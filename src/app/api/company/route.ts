@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
   }
   console.log(req.nextUrl.searchParams.get("email"));
   const { rows } =
-    await sql`SELECT id FROM accounts where email = ${req.nextUrl.searchParams.get(
+    await sql`SELECT id FROM companies where email = ${req.nextUrl.searchParams.get(
       "email"
     )} and password = ${req.nextUrl.searchParams.get("password")}`;
   console.log(rows);
