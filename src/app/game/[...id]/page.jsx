@@ -1,10 +1,9 @@
-const StorePage = ({ params: { id } }) => {
-  console.log(id);
+const GamePage = ({ params: { id } }) => {
   return (
-    <p className="text-2xl">
+    <p>
       Showing the store page for the name <strong>{id}</strong>
     </p>
   );
 };
 
-export default StorePage;
+export default GamePage;
