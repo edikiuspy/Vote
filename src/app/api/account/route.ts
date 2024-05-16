@@ -18,11 +18,17 @@ export async function GET(req: NextRequest) {
     await sql`SELECT id FROM accounts where email = ${req.nextUrl.searchParams.get(
       "email"
     )} and password = ${req.nextUrl.searchParams.get("password")}`;
-
+  console.log(rows);
+  if (rows.length === 0) {
+    return NextResponse.json(
+      { message: "Wrong email or password" },
+      { status: 400 }
+    );
+  }
   return NextResponse.json(
     {
       message: "Success",
-      token: jwt.sign({ message: rows }, token, { expiresIn: "1h" }),
+      token: jwt.sign({ rows }, token, { expiresIn: "1h" }),
     },
     { status: 200 }
   );
@@ -36,7 +42,11 @@ export async function POST(req: NextRequest) {
   ) {
     return NextResponse.json({ message: "Data missing" }, { status: 400 });
   }
-  const { rows } =
+  var { rows } = await sql`SELECT id FROM accounts where email = ${req.nextUrl.searchParams.get('email')}`
+  if (rows.length > 0) {
+    return NextResponse.json({ message: "Email already exists" }, { status: 400 });
+  }
+  var { rows } =
     await sql`INSERT INTO accounts (id,email, password, name, surname) VALUES (${uuid()},${req.nextUrl.searchParams.get(
       "email"
     )}, ${req.nextUrl.searchParams.get(
