@@ -3,18 +3,19 @@
 
 const login_and_register = () => {
     return (
-        <main className="login_and_register">
-            <div className="container">
-                <div className="login">
-                    <p>Log in Section</p>
-                </div>
+        <div className="w-full h-full">
+            <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center h-full">
+                <div className=" rounded-2xl bg-accent2">
+                    <div className="">
+                        <p>Login Section</p>
+                    </div>
 
-                <div className="register">
-                    <p>Register Section</p>
+                    <div className="register">
+                        <p>Register Section</p>
+                    </div>
                 </div>
-            </div>
-        </main>
-        
+            </main>
+        </div>
     );
   };
   
