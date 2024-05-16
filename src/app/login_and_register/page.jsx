@@ -1,5 +1,5 @@
 "use client";
-import '../login_and_register/page.scss';
+
 
 const login_and_register = () => {
     return (
