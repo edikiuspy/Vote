@@ -10,19 +10,16 @@ async function getGames() {
 
 export default async function Home() {
   const games = await getGames();
-  console.log(games)
+
+  const items = games.map((game) => <Game key={game.id} game={game} />)
 
   return (
     <main className="">
-      <div>
-        {games.map((game) => (
-          <Game key={game.id} game={game} />
-        ))}
-      </div>
+        {items}
       <EmblaCarousel
-        slides={games.map(game => <Game key={game.id} game={game} />)}
+        slides= {items}
         options={{ loop: true }}
-      />
+      /> 
     </main>
   );
 }
