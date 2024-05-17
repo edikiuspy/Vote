@@ -1,5 +1,4 @@
 const Game=(game) => {
-    console.log(game);
     return (
         <div>
         {game.game.name}

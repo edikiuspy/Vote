@@ -1,3 +1,4 @@
+"use client";
 import Autoplay from 'embla-carousel-autoplay'
 import useEmblaCarousel from 'embla-carousel-react'
 import embla_carousel from '../embla_carousel/embla_carousel.scss'
