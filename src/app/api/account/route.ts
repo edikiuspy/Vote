@@ -13,12 +13,10 @@ export async function GET(req: NextRequest) {
       { status: 400 }
     );
   }
-  console.log(req.nextUrl.searchParams.get("email"));
   const { rows } =
     await sql`SELECT id FROM accounts where email = ${req.nextUrl.searchParams.get(
       "email"
     )} and password = ${req.nextUrl.searchParams.get("password")}`;
-  console.log(rows);
   if (rows.length === 0) {
     return NextResponse.json(
       { message: "Wrong email or password" },
