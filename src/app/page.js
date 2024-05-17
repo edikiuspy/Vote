@@ -1,9 +1,10 @@
-
 import EmblaCarousel from "../app/components/embla_carousel/embla_carousel";
 import Game from "../app/components/game/game";
 
 async function getGames() {
-  const res = await fetch(`http://localhost:3000/api/game`);
+  const res = await fetch(`http://localhost:3000/api/game`, {
+    cache: "no-store",
+  });
   const data = await res.json();
   return data;
 }
@@ -11,15 +12,11 @@ async function getGames() {
 export default async function Home() {
   const games = await getGames();
 
-  const items = games.map((game) => <Game key={game.id} game={game} />)
+  const items = games.map((game) => <Game key={game.id} game={game} />);
 
   return (
     <main className="">
-        {items}
-      <EmblaCarousel
-        slides= {items}
-        options={{ loop: true }}
-      /> 
+      <EmblaCarousel slides={items} options={{ loop: true }} />
     </main>
   );
 }
