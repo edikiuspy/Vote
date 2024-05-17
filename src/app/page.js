@@ -1,6 +1,7 @@
 
 import EmblaCarousel from "../app/components/embla_carousel/embla_carousel";
 import Game from "../app/components/game/game";
+
 async function getGames() {
   const res = await fetch(`http://localhost:3000/api/game`);
   const data = await res.json();
@@ -14,7 +15,9 @@ export default async function Home() {
   return (
     <main className="">
       <div>
-      {games.map(game => <Game key={game.id} game={game} />)}
+        {games.map((game) => (
+          <Game key={game.id} game={game} />
+        ))}
       </div>
       <EmblaCarousel
         slides={games.map(game => <Game key={game.id} game={game} />)}
