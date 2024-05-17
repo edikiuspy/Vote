@@ -1,15 +1,15 @@
 const Navbar = () => {
-    return (
-        <nav>
-        <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">Login</Link></li>
-            <li><Link to="/contact">Register</Link></li>
-            <li><Link to="/contact">Company login</Link></li>
-            <li><Link to="/contact">Company register</Link></li>
+  return (
+    <nav className="navbar">
+      <div className="navbar__container">
+        <div className="navbar__logo">Logo</div>
+        <ul className="navbar__menu">
+          <li className="navbar__menu__item">Home</li>
+          <li className="navbar__menu__item">About</li>
+          <li className="navbar__menu__item">Contact</li>
         </ul>
-        </nav>
-    );
-    }
+      </div>
+    </nav>
+  );
+};
 export default Navbar;
-

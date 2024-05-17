@@ -1,10 +1,12 @@
-import Autoplay from 'embla-carousel-autoplay'
-import useEmblaCarousel from 'embla-carousel-react'
-import embla_carousel from '../embla_carousel/embla_carousel.scss'
+"use client";
+
+import Autoplay from "embla-carousel-autoplay";
+import useEmblaCarousel from "embla-carousel-react";
+import embla_carousel from "../embla_carousel/embla_carousel.scss";
 
 const EmblaCarousel = (props) => {
-  const { slides, options } = props
-  const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()])
+  const { slides, options } = props;
+  const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()]);
 
   return (
     <section className="embla">
@@ -18,7 +20,7 @@ const EmblaCarousel = (props) => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default EmblaCarousel
+export default EmblaCarousel;
