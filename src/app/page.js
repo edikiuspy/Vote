@@ -1,6 +1,5 @@
 import EmblaCarousel from "../app/components/embla_carousel/embla_carousel";
 import Game from "../app/components/game/game";
-import Navbar from "../app/components/navbar/navbar";
 
 async function getGames() {
   const res = await fetch(`http://localhost:3000/api/game`);
@@ -21,7 +20,6 @@ export default async function Home() {
         slides={Array.from(Array(5).keys())}
         options={{ loop: true }}
       />
-      <Navbar />
     </main>
   );
 }
