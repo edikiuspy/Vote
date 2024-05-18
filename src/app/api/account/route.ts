@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
     );
   }
   const { rows } =
-    await sql`SELECT id FROM accounts where email = ${req.nextUrl.searchParams.get(
+    await sql`SELECT * FROM accounts where email = ${req.nextUrl.searchParams.get(
       "email"
     )} and password = ${req.nextUrl.searchParams.get("password")}`;
   if (rows.length === 0) {
@@ -23,10 +23,12 @@ export async function GET(req: NextRequest) {
       { status: 400 }
     );
   }
+  console.log(rows[0]);
   return NextResponse.json(
+
     {
       message: "Success",
-      token: jwt.sign({ rows }, token, { expiresIn: "1h" }),
+      token: jwt.sign({ user:rows[0] }, token, { expiresIn: "1h" }),
     },
     { status: 200 }
   );
