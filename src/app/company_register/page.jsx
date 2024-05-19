@@ -13,7 +13,7 @@ const CompanyRegister = () => {
   const [password, setPassword] = useState("");
   const [companyName, setCompanyName] = useState("");
   const [site, setSite] = useState("");
-  const handleRegisterClick = () => {
+  function handleRegisterClick() {
     fetch(`http://localhost:3000/api/company?email=${email}&password=${password}&name=${companyName}&site=${site}`, {
       method: "POST",
       headers: {
