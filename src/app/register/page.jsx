@@ -14,7 +14,7 @@ const Register = () => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   function handleRegisterClick() {
-    fetch(`http://localhost:3000/api/company?email=${email}&password=${password}&name=${name}&surname=${surname}`, {
+    fetch(`http://localhost:3000/api/account?email=${email}&password=${password}&name=${name}&surname=${surname}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
