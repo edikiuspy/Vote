@@ -10,6 +10,14 @@ const Game = (game) => {
       
       <Button className=" w-2/5 py-20" id={game.game.id} />
       <p className=" w-2/5  text-bg text-lg">Votes: {game.game.votes}</p>
+    <div>
+      <p>{game.game.name}</p>
+      <p>{game.game.description}</p>
+      <p>{game.game.type}</p>
+      <p>{game.game.release_date}</p>
+      <img src={game.game.image} alt={game.game.name+' image'} />
+      <p>{game.game.votes}</p>
+      <Button id={game.game.id} />
     </div>
   );
 };
