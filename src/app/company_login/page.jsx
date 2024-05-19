@@ -1,12 +1,13 @@
 "use client";
 
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 const CompanyLogin = () => {
   const router = useRouter();
-
-  const handleRegisterClick = () => {
-    router.push('/company_register'); 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");  const handleRegisterClick = () => {
+    router.push(`/api/account?email=${email}&password=${password}`); 
   };
 
   return (
@@ -17,7 +18,7 @@ const CompanyLogin = () => {
             <h2 className="text-3xl font-bold mb-2 text-accent py-3 my-10">Welcome back!</h2>
             <div className="border-2 border-bg mb-4 w-12 inline-block"></div>
             <form action="#" className="flex py-13 flex-col items-center">
-              <input type="text" placeholder="Email" className="w-3/4 bg-bg text-accent1 py-2 px-4 rounded-full mb-4 outline-none max-w-xl" />
+              <input type="email" placeholder="Email" className="w-3/4 bg-bg text-accent1 py-2 px-4 rounded-full mb-4 outline-none max-w-xl" />
               <input type="password" placeholder="Password" className="w-3/4 bg-bg text-accent1  py-2 px-4 rounded-full mb-4 outline-none" />
               <a href="#" className="text-accent1 text-sm mb-4">Forgot your password?</a>
               <button className="bg-bg text-accent1 py-2 px-4 rounded-full inline-block font-semibold hover:bg-accent hover:text-bg">Login</button>

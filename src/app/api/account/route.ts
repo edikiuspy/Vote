@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sql } from "@vercel/postgres";
 import { v4 as uuid } from "uuid";
+import { cookies } from "next/headers";
 var jwt = require("jsonwebtoken");
 const token = process.env.TOKEN;
 export async function GET(req: NextRequest) {
@@ -24,6 +25,7 @@ export async function GET(req: NextRequest) {
     );
   }
   console.log(rows[0]);
+  cookies().set("token", jwt.sign({ user: rows[0] }, token, { expiresIn: "1h" }));
   return NextResponse.json(
 
     {
