@@ -11,7 +11,7 @@ const AddGame = () => {
     router.push("/register");
   };
 
-  const [name, setTitle] = useState(""); 
+  const [name, setTitle] = useState("");
   const [type, setGenre] = useState("");
   const [description, setDescription] = useState("");
   const [site, setwebSite] = useState("");
@@ -26,7 +26,14 @@ const AddGame = () => {
         "Content-Type": "application/json",
         Authorization: token,
       },
-      body: JSON.stringify({ name, type, description, image, site,release_date }),
+      body: JSON.stringify({
+        name,
+        type,
+        description,
+        image,
+        site,
+        release_date,
+      }),
     });
   }
 
@@ -96,18 +103,10 @@ const AddGame = () => {
                               reader.readAsDataURL(file);
                               reader.onloadend = function () {
                                 var base64data = reader.result;
-                                console.log(base64data);
                                 setFile(base64data);
                               };
                             }
-                            console.log(
-                              `items file[${i}].name = ${file?.name}`
-                            );
                           }
-                        });
-                      } else {
-                        [...e.dataTransfer.files].forEach((file, i) => {
-                          console.log(`… file[${i}].name = ${file.name}`);
                         });
                       }
                     }}
@@ -124,14 +123,12 @@ const AddGame = () => {
                       type="file"
                       className="hidden"
                       onChange={(e) => {
-                        console.log(e.target.files);
                         let files = e.target.files;
                         if (files && files[0]) {
                           var reader = new FileReader();
                           reader.readAsDataURL(files[0]);
                           reader.onloadend = function () {
                             var base64data = reader.result;
-                            console.log(base64data);
                             setFile(base64data);
                           };
                         }

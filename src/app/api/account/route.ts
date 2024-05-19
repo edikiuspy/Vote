@@ -24,13 +24,14 @@ export async function GET(req: NextRequest) {
       { status: 400 }
     );
   }
-  console.log(rows[0]);
-  cookies().set("token", jwt.sign({ user: rows[0] }, token, { expiresIn: "1h" }));
+  cookies().set(
+    "token",
+    jwt.sign({ user: rows[0] }, token, { expiresIn: "1h" })
+  );
   return NextResponse.json(
-
     {
       message: "Success",
-      token: jwt.sign({ user:rows[0] }, token, { expiresIn: "1h" }),
+      token: jwt.sign({ user: rows[0] }, token, { expiresIn: "1h" }),
     },
     { status: 200 }
   );
@@ -44,9 +45,15 @@ export async function POST(req: NextRequest) {
   ) {
     return NextResponse.json({ message: "Data missing" }, { status: 400 });
   }
-  var { rows } = await sql`SELECT id FROM accounts where email = ${req.nextUrl.searchParams.get('email')}`
+  var { rows } =
+    await sql`SELECT id FROM accounts where email = ${req.nextUrl.searchParams.get(
+      "email"
+    )}`;
   if (rows.length > 0) {
-    return NextResponse.json({ message: "Email already exists" }, { status: 400 });
+    return NextResponse.json(
+      { message: "Email already exists" },
+      { status: 400 }
+    );
   }
   var { rows } =
     await sql`INSERT INTO accounts (id,email, password, name, surname) VALUES (${uuid()},${req.nextUrl.searchParams.get(

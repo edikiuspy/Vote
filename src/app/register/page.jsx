@@ -21,7 +21,6 @@ const Register = () => {
       },
     });
     const data = await result.json();
-    console.log(data);
     if (data.status === "success") {
       router.push('/login');
     }

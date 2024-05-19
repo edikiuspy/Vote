@@ -19,7 +19,6 @@ const Login = () => {
       },
     });
     const data = await result.json();
-    console.log(data);
     if (data.message === "Success") {
       router.push('/');
     }
