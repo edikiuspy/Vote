@@ -13,13 +13,21 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
-  function handleRegisterClick() {
-    fetch(`http://localhost:3000/api/account?email=${email}&password=${password}&name=${name}&surname=${surname}`, {
+  async function handleRegisterClick() {
+    const result = await fetch(`http://localhost:3000/api/account?email=${email}&password=${password}&name=${name}&surname=${surname}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
     });
+    const data = await result.json();
+    console.log(data);
+    if (data.status === "success") {
+      router.push('/login');
+    }
+    else {
+      alert(`Registration failed\nError: ${data.message}`);
+    }
   };
   return (
     <div className="w-full h-full">

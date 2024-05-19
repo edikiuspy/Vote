@@ -26,7 +26,6 @@ export async function POST(req: NextRequest) {
       if (
         !data.hasOwnProperty("name") ||
         !data.hasOwnProperty("description") ||
-        !data.hasOwnProperty("price") ||
         !data.hasOwnProperty("site") ||
         !data.hasOwnProperty("release_date") ||
         !data.hasOwnProperty("type") ||

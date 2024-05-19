@@ -13,13 +13,21 @@ const CompanyRegister = () => {
   const [password, setPassword] = useState("");
   const [companyName, setCompanyName] = useState("");
   const [site, setSite] = useState("");
-  function handleRegisterClick() {
-    fetch(`http://localhost:3000/api/company?email=${email}&password=${password}&name=${companyName}&site=${site}`, {
+  async function handleRegisterClick() {
+    const result =await fetch(`http://localhost:3000/api/company?email=${email}&password=${password}&name=${companyName}&site=${site}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
     });
+    const data = await result.json();
+    console.log(data);
+    if (data.status === "success") {
+      router.push('/company_login');
+    }
+    else {
+      alert(`Registration failed\nError: ${data.message}`);
+    }
   };
   return (
     <div className="w-full h-full">

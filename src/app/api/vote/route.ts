@@ -26,6 +26,12 @@ export async function POST(req: NextRequest) {
       if (!req.nextUrl.searchParams.get("id")) {
         return NextResponse.json({ message: "Wrong data" }, { status: 400 });
       }
+      if (user.voted_on == req.nextUrl.searchParams.get("id")) {
+        return NextResponse.json(
+          { message: "You have already voted on this game" },
+          { status: 400 }
+        );
+      }
       var result =
         await sql`SELECT votes FROM games  WHERE id = ${req.nextUrl.searchParams.get(
           "id"

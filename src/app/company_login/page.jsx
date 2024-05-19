@@ -10,13 +10,21 @@ const CompanyLogin = () => {
   };
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  function handleLoginClick() {
-    fetch(`http://localhost:3000/api/company?email=${email}&password=${password}`, {
+  async function handleLoginClick() {
+    const result=await fetch(`http://localhost:3000/api/company?email=${email}&password=${password}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     });
+    const data = await result.json();
+    console.log(data);
+    if (data.message === "Success") {
+      router.push('/game_addition');
+    }
+    else {
+      alert(`Login failed\nError: ${data.message}`);
+    }
   };
   return (
     <div className="w-full h-full">
