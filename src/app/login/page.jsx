@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 const Login = () => {
   const router = useRouter();
@@ -8,7 +9,16 @@ const Login = () => {
   const handleRegisterClick = () => {
     router.push('/register'); 
   };
-
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  function handleLoginClick() {
+    fetch(`http://localhost:3000/api/account?email=${email}&password=${password}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  };
   return (
     <div className="w-full h-full">
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center h-full">
@@ -17,10 +27,10 @@ const Login = () => {
             <h2 className="text-3xl font-bold mb-2 text-accent py-3 my-10">Welcome back!</h2>
             <div className="border-2 border-bg mb-4 w-12 inline-block"></div>
             <form action="#" className="flex py-13 flex-col items-center">
-              <input type="text" placeholder="Email" className="w-3/4 bg-bg text-accent1 py-2 px-4 rounded-full mb-4 outline-none max-w-xl" />
-              <input type="password" placeholder="Password" className="w-3/4 bg-bg text-accent1  py-2 px-4 rounded-full mb-4 outline-none" />
+              <input type="email" placeholder="Email" className="w-3/4 bg-bg text-accent1 py-2 px-4 rounded-full mb-4 outline-none max-w-xl" onChange={e=>setEmail(e.target.value)}/>
+              <input type="password" placeholder="Password" className="w-3/4 bg-bg text-accent1  py-2 px-4 rounded-full mb-4 outline-none" onChange={e=>setPassword(e.target.value)}/>
               <a href="#" className="text-accent1 text-sm mb-4">Forgot your password?</a>
-              <button className="bg-bg text-accent1 py-2 px-4 rounded-full inline-block font-semibold hover:bg-accent hover:text-bg">Login</button>
+              <button className="bg-bg text-accent1 py-2 px-4 rounded-full inline-block font-semibold hover:bg-accent hover:text-bg" onClick={handleLoginClick}>Login</button>
             </form>
           </div>
 
