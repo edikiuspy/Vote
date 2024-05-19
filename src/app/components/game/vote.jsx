@@ -15,6 +15,6 @@ async function sendVote(gameId) {
 }
 export default function Button(id) {
     return (
-        <button className="button" onClick={()=>{sendVote(id.id)}}>Vote</button>
+        <button className="mt-8 bg-bg text-xl text-accent1 rounded-full inline-block  w-1/5 h-10  hover:bg-accent hover:text-bg" onClick={()=>{sendVote(id.id)}}>Vote</button>
     );
 }

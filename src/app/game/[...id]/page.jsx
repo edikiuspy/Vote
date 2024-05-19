@@ -8,6 +8,8 @@ export default async function gamePage({ params }) {
   return (
     <p>
       {game.name}
+
+
     </p>
   );
 }
