@@ -18,9 +18,9 @@ const AddGame = () => {
   const [image, setFile] = useState("");
   const [release_date, setReleaseDate] = useState("");
   const [fileEnter, setFileEnter] = useState(false);
-  function handleAddGameClick() {
+  async function handleAddGameClick() {
     const token = Cookies.get("token") || "";
-    fetch(`http://localhost:3000/api/game`, {
+    const result = await fetch(`http://localhost:3000/api/game`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -35,6 +35,13 @@ const AddGame = () => {
         release_date,
       }),
     });
+
+    const data = await result.json();
+    if (data.message == "Data inserted successfully") {
+      router.push("/");
+    } else {
+      alert(`Game add failed\nError: ${data.message}`);
+    }
   }
 
   return (
