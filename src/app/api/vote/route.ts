@@ -40,10 +40,7 @@ export async function POST(req: NextRequest) {
           { status: 404 }
         );
       }
-      if (
-        user.voted_on != req.nextUrl.searchParams.get("id") &&
-        user.voted_on
-      ) {
+      if (user.voted_on != req.nextUrl.searchParams.get("id") && user.voted_on) {
         var previousResult =
           await sql`SELECT votes FROM games WHERE id = ${user.voted_on}`;
         await sql`UPDATE games SET votes = ${
@@ -52,6 +49,7 @@ export async function POST(req: NextRequest) {
       }
 
       await sql`UPDATE games SET votes = ${
+        result.rows[0].votes + 1
       } WHERE id = ${req.nextUrl.searchParams.get("id")}`;
 
       await sql`UPDATE accounts SET voted_on = ${req.nextUrl.searchParams.get(
@@ -60,7 +58,6 @@ export async function POST(req: NextRequest) {
 
       return NextResponse.json({ message: "Voted" }, { status: 200 });
     } catch (error) {
-      console.error(error);
       return NextResponse.json({ error: "Invalid token" }, { status: 401 });
     }
   }
