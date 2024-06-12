@@ -35,6 +35,7 @@ const AddGame = () => {
         release_date,
       }),
     });
+    router.push("/");
 
     const data = await result.json();
     if (data.message == "Data inserted successfully") {

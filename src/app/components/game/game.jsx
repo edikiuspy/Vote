@@ -6,11 +6,13 @@ const Game = (game) => {
     <div className="flex  flex-col flex-wrap gap-4 bg-accent2 rounded-lg shadow-md p-4 w-3/5">
       <div className="flex flex-col gap-1 space-y-2">
         <h2 className="text-5xl font-bold text-bg">{game.game.name}</h2>
-        <img
-          src={game.game.image}
-          className="w-3/5 h-3/5"
-          alt={game.game.name + " image"}
-        />
+        <div className="w-2/5 h-2/5 flex ">
+          <img
+            src={game.game.image}
+            className="w-96 h-56 object-cover rounded-lg shadow-md flex justify-center"
+            alt={game.game.name + " image"}
+          />
+        </div>
         <p className=" text-lg text-bg">
           Release date: {format(new Date(game.game.release_date), "dd.MM.yyyy")}
         </p>

@@ -21,6 +21,8 @@ const Login = () => {
     const data = await result.json();
     if (data.message === "Success") {
       router.push('/');
+
+
     }
     else {
       alert(`Login failed\nError: ${data.message}`);

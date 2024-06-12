@@ -24,6 +24,6 @@
     "**/*.ts",
     "**/*.tsx",
     "src/app/game/[...id]/page.jsx"
-  ],
+, "src/app/components/game/vote.jsx"  ],
   "exclude": ["node_modules"]
 }
