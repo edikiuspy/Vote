@@ -3,7 +3,9 @@
 import cookieCutter from "cookie-cutter";
 import { useEffect, useState } from "react";
 
-export default function Button(id) {
+export default function Button({id, fetchGames}) {
+  // ...
+
   async function sendVote(gameId) {
     const res = await fetch(`http://localhost:3000/api/vote?id=${gameId}`, {
       method: "POST",
@@ -15,6 +17,7 @@ export default function Button(id) {
     });
     if (res.status === 200) {
       setVoteSent(true);
+      fetchGames();
     }
     const data = await res.json();
 
@@ -32,7 +35,7 @@ export default function Button(id) {
         voteSent ? "bg-green-600 text-bg" : "bg-bg text-accent1"
       } ${token ? "hover:bg-accent" : "bg-black text-accent1"}  hover:text-bg`}
       onClick={() => {
-        token && sendVote(id.id);
+        token && sendVote(id);
       }}
       disabled={!token}
     >

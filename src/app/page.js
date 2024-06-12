@@ -18,7 +18,7 @@ export default function Home() {
 };
   const [games, setGames] = useState([]);
   
-  const fetchGames = () => {
+  function fetchGames() {
     getGames()
       .then(fetchedGames => {
         setGames(fetchedGames);
@@ -31,8 +31,8 @@ export default function Home() {
   useEffect(() => {
     fetchGames();
   }, []);
-
-  const items = games.map((game) => <Game key={game.id} game={game} />);
+  console.log(typeof fetchGames);
+  const items = games.map(game => <Game key={game.id} game={game} fetchGames={fetchGames} />)
   return (
     <main className="">
       <EmblaCarousel slides={items} options={{ loop: true }} />
